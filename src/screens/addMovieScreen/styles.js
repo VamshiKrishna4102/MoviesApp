@@ -22,6 +22,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  poster_image:{
+height:'100%',
+width:'100%'
+  },
   poster_text: {
     marginTop:10,
     color:"lightgray",

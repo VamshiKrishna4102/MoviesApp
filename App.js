@@ -14,11 +14,17 @@ import {View} from 'react-native';
 
 import {HomeIcon, Cog6ToothIcon} from 'react-native-heroicons/outline';
 import AddMovieScreen from './src/screens/addMovieScreen';
+import {ThemeProvader, useTheme} from './src/themes/themeProvider';
 
 const App = () => {
   function BottomTabs() {
+    const {colors} = useTheme();
     return (
-      <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Navigator
+        screenOptions={{
+          headerShown: false,
+          tabBarStyle: {backgroundColor: colors.background},
+        }}>
         <Tab.Screen
           name="Home"
           component={MovieListScreen}
@@ -42,16 +48,22 @@ const App = () => {
   }
   return (
     <Provider store={Store}>
-      <NavigationContainer>
-        <Stack.Navigator screenOptions={{headerShown: false}}>
-          <Stack.Screen name="Tabs" component={BottomTabs} />
-          <Stack.Screen
-            name="AddMovie"
-            component={AddMovieScreen}
-            options={{headerTitle: 'Add Movie',headerShown:'true',headerBackTitle: ''}}
-          />
-        </Stack.Navigator>
-      </NavigationContainer>
+      <ThemeProvader>
+        <NavigationContainer>
+          <Stack.Navigator screenOptions={{headerShown: false}}>
+            <Stack.Screen name="Tabs" component={BottomTabs} />
+            <Stack.Screen
+              name="AddMovie"
+              component={AddMovieScreen}
+              options={{
+                headerTitle: 'Add Movie',
+                headerShown: 'true',
+                headerBackTitle: '',
+              }}
+            />
+          </Stack.Navigator>
+        </NavigationContainer>
+      </ThemeProvader>
     </Provider>
   );
 };
